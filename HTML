@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Karuna ❤️</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 50px;
+      overflow: hidden;
+      background: linear-gradient(120deg, #ffe6f0, #fff0b3);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    h1 {
+      color: #ff3399;
+      font-size: 3em;
+      animation: fadeIn 2s ease-in-out;
+      margin-bottom: 20px;
+    }
+
+    #typing {
+      font-size: 1.8em;
+      color: #ff66aa;
+      height: 2em;
+      margin-bottom: 30px;
+    }
+
+    #photo-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    #photo-container img {
+      width: 200px;
+      border-radius: 20px;
+      animation: float 3s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
+    }
+
+    p {
+      font-size: 1.5em;
+      color: #ff6699;
+      margin-top: 20px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .heart {
+      position: absolute;
+      user-select: none;
+      pointer-events: none;
+      animation: floatHearts linear infinite;
+    }
+
+    @keyframes floatHearts {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      50% { transform: translateY(-100px) scale(1.2); opacity: 0.7; }
+      100% { transform: translateY(-200px) scale(0.8); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Happy Birthday, Karuna ❤️</h1>
+
+  <!-- Typing message -->
+  <div id="typing"></div>
+
+  <!-- Photo with hearts around -->
+  <div id="photo-container">
+    <!-- Embedded photo -->
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAABmJLR0QA/wD/AP+gvaeTAA..." alt="Karuna ❤️">
+  </div>
+
+  <p>Wishing you a day full of smiles and joy!</p>
+
+  <script>
+    // Typing effect
+    const message = "May your day be full of love, laughter, and magic! ✨";
+    const typingDiv = document.getElementById('typing');
+    let index = 0;
+
+    function typeLetter() {
+      if (index < message.length) {
+        typingDiv.textContent += message[index];
+        index++;
+        setTimeout(typeLetter, 100);
+      }
+    }
+    typeLetter();
+
+    // Floating hearts around the photo
+    const photoContainer = document.getElementById('photo-container');
+    const colors = ['#ff3399','#ff6666','#ffcc33','#ff99ff','#66ccff'];
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = '❤️';
+      heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+      heart.style.fontSize = (10 + Math.random() * 20) + 'px';
+
+      const rect = photoContainer.getBoundingClientRect();
+      const x = Math.random() * rect.width - rect.width / 2;
+      const y = Math.random() * rect.height - rect.height / 2;
+      heart.style.left = x + 'px';
+      heart.style.top = y + 'px';
+
+      photoContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
+    }
+
+    setInterval(createHeart, 200);
+  </script>
+
+</body>
+</html>
